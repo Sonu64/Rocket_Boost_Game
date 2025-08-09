@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour {
     [SerializeField] InputAction thrust;
     [SerializeField] InputAction rotation;
     Rigidbody rb;
+    AudioSource audioSource;
     [SerializeField] private float thrustStrength;
     [SerializeField] private float rotationStrength;
 
@@ -16,9 +17,12 @@ public class Movement : MonoBehaviour {
     private void Start() {
         // current object's rigid body
         rb = GetComponent<Rigidbody>();
+        // current object's audio source component
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate() {
+
         Thrust();
         Rotation();
     }
@@ -44,6 +48,13 @@ public class Movement : MonoBehaviour {
     private void Thrust() {
         if (thrust.IsPressed()) {
             rb.AddRelativeForce(thrustStrength * Time.fixedDeltaTime * Vector3.up);
+            if (!audioSource.isPlaying) {
+                audioSource.Play();
+            } else {
+                audioSource.Stop();
+            }
+        } else {
+            audioSource.Stop();
         }
     }
 }
