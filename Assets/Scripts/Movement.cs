@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour {
     private void ApplyRotation(float rotationStrength) {
         rb.freezeRotation = true;
         transform.Rotate(Vector3.forward * Time.fixedDeltaTime * rotationStrength);
-        rb.freezeRotation = false;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ;
     }
 
     private void Thrust() {
