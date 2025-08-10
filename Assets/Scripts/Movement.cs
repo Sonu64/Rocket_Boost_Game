@@ -42,6 +42,8 @@ public class Movement : MonoBehaviour {
     private void ApplyRotation(float rotationStrength) {
         rb.freezeRotation = true;
         transform.Rotate(Vector3.forward * Time.fixedDeltaTime * rotationStrength);
+        
+        // below code is a combination of enums using bitwise OR operator, memorise this !
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ;
     }
 
