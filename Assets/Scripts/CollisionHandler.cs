@@ -42,10 +42,12 @@ public class CollisionHandler : MonoBehaviour
 
     private static void LoadNextLevel() { 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (currentSceneIndex == 2) {
+        if (currentSceneIndex == SceneManager.sceneCountInBuildSettings - 1) {
             SceneManager.LoadScene(0);
+            currentSceneIndex = 0;
         } else { 
             SceneManager.LoadScene(currentSceneIndex + 1);
+            currentSceneIndex++;
         }
             
     }
