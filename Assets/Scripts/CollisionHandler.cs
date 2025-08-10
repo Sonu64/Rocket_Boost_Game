@@ -23,6 +23,7 @@ public class CollisionHandler : MonoBehaviour
                 break;
             case "Finish":
                 Debug.Log("Finished");
+                LoadNextLevel();
                 break;
             case "Ground":
                 Debug.Log("Ground hit");
@@ -37,5 +38,15 @@ public class CollisionHandler : MonoBehaviour
     private static void ReloadLevel() {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
+    }
+
+    private static void LoadNextLevel() { 
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex == 2) {
+            SceneManager.LoadScene(0);
+        } else { 
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+            
     }
 }
