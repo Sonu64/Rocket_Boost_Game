@@ -3,28 +3,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() {
-        
-    }
 
-    // Update is called once per frame
-    void Update() {
-        
-    }
+    [SerializeField] float levelLoadDelay = 2f;
 
     private void OnCollisionEnter(Collision collision) {
         string objectTag = collision.gameObject.tag;
         switch(objectTag) {
-            case "Friendly":
-                Debug.Log("Friendly");
-                break;
-            case "Fuel":
-                Debug.Log("Fuel taken");
-                break;
             case "Finish":
                 Debug.Log("Finished");
-                LoadNextLevel();
+                StartSuccessSequence();
                 break;
             case "Ground":
                 Debug.Log("Ground hit");
@@ -36,10 +23,15 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
+    void StartSuccessSequence() {
+        GetComponent<Movement>().enabled = false;
+        Invoke("LoadNextLevel", levelLoadDelay);
+    }
+
     void StartCrashSequence() {
         // disable movement script once crashed
         GetComponent<Movement>().enabled = false;
-        Invoke("ReloadLevel", 2f);
+        Invoke("ReloadLevel", levelLoadDelay);
     }
 
     void ReloadLevel() {
