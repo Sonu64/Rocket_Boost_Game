@@ -19,25 +19,27 @@ public class CollisionHandler : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         string objectTag = collision.gameObject.tag;
 
-        if (!isControllable) return;
+        if (!isControllable) 
+            return;
 
-        switch(objectTag) {
-            case "Finish":
-                Debug.Log("Finished");
-                StartSuccessSequence();
-                break;
-            case "Ground":
-                Debug.Log("Ground hit");
-                StartCrashSequence();
-                break;
-            case "Obstacle":
-                Debug.Log("Obstacle Hit");
-                StartHitSequence();
-                break;
-            default:
-                Debug.Log("Nothing yet");
-                break;
-        }
+        else
+            switch (objectTag) {
+                case "Finish":
+                    Debug.Log("Finished");
+                    StartSuccessSequence();
+                    break;
+                case "Ground":
+                    Debug.Log("Ground hit");
+                    StartCrashSequence();
+                    break;
+                case "Obstacle":
+                    Debug.Log("Obstacle Hit");
+                    StartHitSequence();
+                    break;
+                default:
+                    Debug.Log("Nothing yet");
+                    break;
+            }
     }
 
     //Method called when Obstacles are Hit, Todo add PFX diff. from StartCrashSequence()
