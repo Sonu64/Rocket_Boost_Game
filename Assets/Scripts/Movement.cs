@@ -4,10 +4,14 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour {
     [SerializeField] InputAction thrust;
     [SerializeField] InputAction rotation;
-    Rigidbody rb;
-    AudioSource audioSource;
     [SerializeField] private float thrustStrength;
     [SerializeField] private float rotationStrength;
+    [SerializeField] AudioClip mainEngine;
+
+
+    Rigidbody rb;
+    AudioSource audioSource;
+
 
     private void OnEnable() {
         thrust.Enable();
@@ -51,7 +55,7 @@ public class Movement : MonoBehaviour {
         if (thrust.IsPressed()) {
             rb.AddRelativeForce(thrustStrength * Time.fixedDeltaTime * Vector3.up);
             if (!audioSource.isPlaying) {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             } else {
                 audioSource.Stop();
             }

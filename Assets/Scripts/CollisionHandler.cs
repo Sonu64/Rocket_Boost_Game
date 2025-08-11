@@ -5,6 +5,14 @@ public class CollisionHandler : MonoBehaviour
 {
 
     [SerializeField] float levelLoadDelay = 2f;
+    [SerializeField] AudioClip crashSFX;
+    [SerializeField] AudioClip successSFX;
+
+    AudioSource audioSource;
+
+    private void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnCollisionEnter(Collision collision) {
         string objectTag = collision.gameObject.tag;
@@ -17,20 +25,35 @@ public class CollisionHandler : MonoBehaviour
                 Debug.Log("Ground hit");
                 StartCrashSequence();
                 break;
+            case "Obstacle":
+                Debug.Log("Obstacle Hit");
+                StartHitSequence();
+                break;
             default:
                 Debug.Log("Nothing yet");
                 break;
         }
     }
 
+    //Method called when Obstacles are Hit, Todo add PFX diff. from StartCrashSequence()
+    private void StartHitSequence() {
+        GetComponent<Movement>().enabled = false;
+        audioSource.PlayOneShot(crashSFX);
+        Invoke("ReloadLevel", levelLoadDelay);
+    }
+
+    // Method called when landed succcessfully
     void StartSuccessSequence() {
         GetComponent<Movement>().enabled = false;
+        audioSource.PlayOneShot(successSFX);
         Invoke("LoadNextLevel", levelLoadDelay);
     }
 
+    // Method called when Rocket falls on ground, currently same as StartHitSequence() Todo add PFX
     void StartCrashSequence() {
         // disable movement script once crashed
         GetComponent<Movement>().enabled = false;
+        audioSource.PlayOneShot(crashSFX);
         Invoke("ReloadLevel", levelLoadDelay);
     }
 

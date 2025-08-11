@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Friendly
-  - Fuel
   - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX
