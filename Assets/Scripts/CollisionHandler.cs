@@ -10,12 +10,17 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
 
+    bool isControllable = true;
+
     private void Start() {
         audioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision) {
         string objectTag = collision.gameObject.tag;
+
+        if (!isControllable) return;
+
         switch(objectTag) {
             case "Finish":
                 Debug.Log("Finished");
@@ -37,6 +42,9 @@ public class CollisionHandler : MonoBehaviour
 
     //Method called when Obstacles are Hit, Todo add PFX diff. from StartCrashSequence()
     private void StartHitSequence() {
+        isControllable = false;
+        // stop the engine thruster audio before starting any new audio
+        audioSource.Stop();
         GetComponent<Movement>().enabled = false;
         audioSource.PlayOneShot(crashSFX);
         Invoke("ReloadLevel", levelLoadDelay);
@@ -44,6 +52,9 @@ public class CollisionHandler : MonoBehaviour
 
     // Method called when landed succcessfully
     void StartSuccessSequence() {
+        isControllable = false;
+        // stop the engine thruster audio before starting any new audio
+        audioSource.Stop();
         GetComponent<Movement>().enabled = false;
         audioSource.PlayOneShot(successSFX);
         Invoke("LoadNextLevel", levelLoadDelay);
@@ -52,6 +63,9 @@ public class CollisionHandler : MonoBehaviour
     // Method called when Rocket falls on ground, currently same as StartHitSequence() Todo add PFX
     void StartCrashSequence() {
         // disable movement script once crashed
+        isControllable = false;
+        // stop the engine thruster audio before starting any new audio
+        audioSource.Stop();
         GetComponent<Movement>().enabled = false;
         audioSource.PlayOneShot(crashSFX);
         Invoke("ReloadLevel", levelLoadDelay);
