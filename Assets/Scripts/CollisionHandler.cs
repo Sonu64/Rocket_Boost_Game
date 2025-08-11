@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
@@ -27,7 +28,7 @@ public class CollisionHandler : MonoBehaviour
                 break;
             case "Ground":
                 Debug.Log("Ground hit");
-                ReloadLevel();
+                StartCrashSequence();
                 break;
             default:
                 Debug.Log("Nothing yet");
@@ -35,12 +36,18 @@ public class CollisionHandler : MonoBehaviour
         }
     }
 
-    private static void ReloadLevel() {
+    void StartCrashSequence() {
+        // disable movement script once crashed
+        GetComponent<Movement>().enabled = false;
+        Invoke("ReloadLevel", 2f);
+    }
+
+    void ReloadLevel() {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
 
-    private static void LoadNextLevel() { 
+    void LoadNextLevel() { 
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         if (currentSceneIndex == SceneManager.sceneCountInBuildSettings - 1) {
             SceneManager.LoadScene(0);
@@ -51,4 +58,5 @@ public class CollisionHandler : MonoBehaviour
         }
             
     }
+
 }
