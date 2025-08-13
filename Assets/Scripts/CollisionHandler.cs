@@ -7,6 +7,9 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip successSFX;
+    [SerializeField] ParticleSystem crashParticles;
+    [SerializeField] ParticleSystem successParticles;
+
 
     AudioSource audioSource;
 
@@ -44,11 +47,14 @@ public class CollisionHandler : MonoBehaviour
 
     //Method called when Obstacles are Hit, Todo add PFX diff. from StartCrashSequence()
     private void StartHitSequence() {
+        // disable movement script once crashed
         isControllable = false;
         // stop the engine thruster audio before starting any new audio
         audioSource.Stop();
         GetComponent<Movement>().enabled = false;
         audioSource.PlayOneShot(crashSFX);
+        // Playing Particle Effect for Success
+        crashParticles.Play();
         Invoke("ReloadLevel", levelLoadDelay);
     }
 
@@ -59,6 +65,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         GetComponent<Movement>().enabled = false;
         audioSource.PlayOneShot(successSFX);
+        // Playing Particle Effect for Success
+        successParticles.Play();
         Invoke("LoadNextLevel", levelLoadDelay);
     }
 
@@ -70,6 +78,8 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         GetComponent<Movement>().enabled = false;
         audioSource.PlayOneShot(crashSFX);
+        // Playing Particle Effect for Success
+        crashParticles.Play();
         Invoke("ReloadLevel", levelLoadDelay);
     }
 

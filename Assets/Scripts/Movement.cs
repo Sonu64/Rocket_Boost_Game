@@ -7,6 +7,9 @@ public class Movement : MonoBehaviour {
     [SerializeField] private float thrustStrength;
     [SerializeField] private float rotationStrength;
     [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem mainBoosterParticles;
+    [SerializeField] ParticleSystem rightBoosterParticles;
+    [SerializeField] ParticleSystem leftBoosterParticles;
 
 
     Rigidbody rb;
@@ -59,8 +62,14 @@ public class Movement : MonoBehaviour {
             } else {
                 audioSource.Stop();
             }
+            if (!mainBoosterParticles.isPlaying) {
+                mainBoosterParticles.Play();
+            } else {
+                mainBoosterParticles.Stop();
+            }
         } else {
             audioSource.Stop();
+            mainBoosterParticles.Stop();
         }
     }
 }
