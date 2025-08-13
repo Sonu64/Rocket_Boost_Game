@@ -109,7 +109,7 @@ public class CollisionHandler : MonoBehaviour
     void RespondToDebugKeys() {
         if (Keyboard.current.lKey.wasPressedThisFrame) {
             LoadNextLevel();
-        }else if (Keyboard.current.cKey.wasPressedThisFrame) {
+        } else if (Keyboard.current.cKey.wasPressedThisFrame) {
             isCollidable = !isCollidable;
         }
     }
