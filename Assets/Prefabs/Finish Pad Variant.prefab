@@ -60,6 +60,34 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4792267886d2a3648b13dddbb2a30203, type: 2}
+    - target: {fileID: 4166126825869317960, guid: 774a01615f212be489240ec2520952de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166126825869317960, guid: 774a01615f212be489240ec2520952de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166126825869317960, guid: 774a01615f212be489240ec2520952de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687046299169466940, guid: 774a01615f212be489240ec2520952de, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687046299169466940, guid: 774a01615f212be489240ec2520952de, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687046299169466940, guid: 774a01615f212be489240ec2520952de, type: 3}
+      propertyPath: m_Color.r
+      value: 0.49300408
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687046299169466940, guid: 774a01615f212be489240ec2520952de, type: 3}
+      propertyPath: m_Intensity
+      value: 4.35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
