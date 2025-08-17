@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 711609403}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89bf153d62a3be347bfa10b51a21105a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   movementVector: {x: 0, y: 11, z: 0}
 --- !u!136 &711609404
 CapsuleCollider:
@@ -434,7 +434,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4792267886d2a3648b13dddbb2a30203, type: 2}
+  - {fileID: 2100000, guid: f084d4f4c5c90874d9e97b3a252d1482, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -473,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 711609402}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70020586, y: -0, z: -0, w: 0.71394104}
-  m_LocalPosition: {x: 3.77, y: 2.48, z: -4.01}
+  m_LocalPosition: {x: 3.77, y: 2.48, z: -1.89}
   m_LocalScale: {x: 1.376, y: 1.6798, z: 1.2659}
   m_ConstrainProportionsScale: 0
   m_Children: []
