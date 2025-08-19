@@ -10,7 +10,8 @@ public class QuitApplication : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame) { 
+        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+            Debug.Log("Escape was pressed !");
             Application.Quit();
         } 
     }
