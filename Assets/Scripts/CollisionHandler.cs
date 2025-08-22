@@ -8,8 +8,10 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip successSFX;
+    [SerializeField] AudioClip coinSFX;
     [SerializeField] ParticleSystem crashParticles;
     [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem coinParticles;
 
 
     AudioSource audioSource;
@@ -45,14 +47,29 @@ public class CollisionHandler : MonoBehaviour
                     Debug.Log("Obstacle Hit");
                     StartHitSequence();
                     break;
+                case "Roof":
+                    Debug.Log("Roof Hit");
+                    StartHitSequence();
+                    break;
+                case "Coin":
+                    Debug.Log("Coins collected !");
+                    StartCoinsSequence(collision.gameObject);
+                    break;
                 default:
                     Debug.Log("Nothing yet");
                     break;
             }
     }
 
+    void StartCoinsSequence(GameObject coin) {
+        coinParticles.Play();
+        Destroy(coin);
+        audioSource.PlayOneShot(coinSFX);
+        // todo respawn the coins when level is reloaded
+    }
+
     //Method called when Obstacles are Hit, Todo add PFX diff. from StartCrashSequence()
-    private void StartHitSequence() {
+    void StartHitSequence() {
         // disable movement script once crashed
         isControllable = false;
         // stop the engine thruster audio before starting any new audio

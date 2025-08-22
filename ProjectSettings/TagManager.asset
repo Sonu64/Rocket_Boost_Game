@@ -7,6 +7,8 @@ TagManager:
   - Friendly
   - Ground
   - Obstacle
+  - Roof
+  - Coin
   layers:
   - Default
   - TransparentFX
